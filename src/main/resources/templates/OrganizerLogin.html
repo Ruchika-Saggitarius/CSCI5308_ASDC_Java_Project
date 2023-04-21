@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Organizer Login</title>
+        <link th:href="@{/css/common.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="login_container">
+            <div class="split-50w left">
+                <p><span style="font-size:38px;">Welcome back</span></p>
+                <p>Welcome back! Please enter your credentials</p>
+                <form th:action="@{/handleOrganizerLogin}" th:object="${organizer}" method="post">
+                    <p>Email*</p>
+                    <p><input  type="hidden" th:field="*{isOrganizer}" /></p>
+                    <p><input class= "w-410" maxlength="50" name="email" type="email" th:field="*{email}" /></p>
+                    <p>Password*</p>
+                    <p><input  class= "w-410" maxlength="25" name="password" type="password" th:field="*{password}" /></p>
+                    <p><a href="/organizerForgotPassword">Forgot password?</a>&nbsp;</p>
+                    <div th:if="${statusMsg} != null">
+                        <p style="color: red" data-th-text="${statusMsg}"/>
+                    </div>
+                    <p><input class="btn submitButton"name="Login" type="submit" value="Login" /></p>
+                </form>
+                <p>Not registered yet?&nbsp;<a href="/org/signup">Create an account</a></p>
+                <p>Are you a customer? Try&nbsp;<a href="/userLogin">user login</a></p>
+                <p><a href="/home">Back to Home</a></p>
+            </div>
+            <div class="split-50w right">
+                <img th:src="@{/images/signupimage.jpg}" class="image">
+            </div>
+        </div>
+    </body>
+</html>
